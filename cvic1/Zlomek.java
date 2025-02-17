@@ -37,7 +37,7 @@ public class Zlomek {
     }
 
     public Zlomek del(Zlomek druhy) {
-        return new Zlomek(citatel / druhy.jmenovatel, citatel % druhy.citatel );
+        return new Zlomek(citatel % druhy.jmenovatel, citatel % druhy.citatel );
     }
 
     public Zlomek sum(Zlomek druhy) {
@@ -46,7 +46,24 @@ public class Zlomek {
     }
 
     public Zlomek minus(Zlomek druhy) {
-        return new Zlomek(citatel - druhy.citatel, citatel % druhy.citatel);
+        return new Zlomek(citatel - druhy.citatel, citatel - druhy.citatel);
+    }
+
+    public Zlomek zkratit() {
+        int a = Math.abs(citatel);
+        int b = Math.abs(jmenovatel);
+        if (a > b) {
+            int tmp = a;
+            a = b;
+            b = tmp;
+        }
+        int zb;
+        do {
+            zb = a % b;
+            a = b;
+            b = zb;
+        } while (zb != 0);
+        return new Zlomek(citatel / a, jmenovatel / a);
     }
 
     @Override

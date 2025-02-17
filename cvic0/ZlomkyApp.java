@@ -19,10 +19,12 @@ public class ZlomkyApp {
         Zlomek d = a.del(b);
         Zlomek e = a.sum(b);
         Zlomek f = a.minus(b);
+
         System.out.printf("Zlomek a * b = %s\n", c);
         System.out.printf("Zlomek a / c = %s\n", d);
         System.out.printf("Zlomek a + d = %s\n", e);
         System.out.printf("Zlomek a - b = %s\n", f);
+
 
 
     }
