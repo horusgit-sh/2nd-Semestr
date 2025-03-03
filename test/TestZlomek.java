@@ -1,6 +1,6 @@
-package cvic2;
+package test;
 
-import cvic1.Zlomek;
+import model.Zlomek;
 
 import org.junit.jupiter.api.Test;
 

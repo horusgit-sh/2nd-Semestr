@@ -1,4 +1,4 @@
-package cvic1;
+package model;
 
 public class Zlomek extends Number {
     private final int citatel;

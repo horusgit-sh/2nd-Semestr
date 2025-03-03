@@ -1,6 +1,6 @@
-package cvic0;
+package app;
 
-import cvic1.Zlomek;
+import model.Zlomek;
 
 public class ZlomkyApp {
 
