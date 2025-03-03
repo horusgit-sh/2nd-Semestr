@@ -22,6 +22,7 @@ bin/
 /dist/
 /nbdist/
 /.nb-gradle/
+/2nd-Semestr.iml
 
 ### VS Code ###
 .vscode/
