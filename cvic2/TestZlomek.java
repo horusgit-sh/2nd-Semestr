@@ -27,17 +27,38 @@ class ZlomekTest {
 
     @Test
     void deleno() {
+        Zlomek a = new Zlomek(5, 4);
+        Zlomek b = new Zlomek(5, 4);
+        Zlomek c = a.deleno(b);
+        assertEquals(20, c.getCitatel(), "Chybny citatel");
+        assertEquals(20, c.getJmenovatel(), "Chybny jmenovatel");
     }
 
     @Test
     void plus() {
+        Zlomek a = new Zlomek(1, 2);
+        Zlomek b = new Zlomek(1, 4);
+        Zlomek c = a.plus(b).zkratit();
+        assertEquals(3, c.getCitatel(), "Chybny citatel");
+        assertEquals(4, c.getJmenovatel(), "Chybny jmenovatel");
     }
 
     @Test
     void minus() {
+        Zlomek a = new Zlomek(1, 2);
+        Zlomek b = new Zlomek(1, 4);
+        Zlomek c = a.minus(b).zkratit();
+        assertEquals(1, c.getCitatel(), "Chybny citatel");
+        assertEquals(4, c.getJmenovatel(), "Chybny jmenovatel");
     }
 
     @Test
     void zkratit() {
+        Zlomek a = new Zlomek(10, 30);
+        Zlomek b = new Zlomek(5, 30);
+        Zlomek k = a.minus(b);
+        Zlomek c = k.zkratit();
+        assertEquals(1, c.getCitatel(), "Chybny citatel");
+        assertEquals(6, c.getJmenovatel(), "Chybny jmenovatel");
     }
 }

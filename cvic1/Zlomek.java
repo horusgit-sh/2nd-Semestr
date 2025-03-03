@@ -22,7 +22,7 @@ public class Zlomek extends Number {
 
 
     public Zlomek krat(Zlomek druhy) {
-        return new Zlomek(citatel * druhy.citatel, jmenovatel * druhy.jmenovatel).zkratit();
+        return new Zlomek(citatel * druhy.citatel, jmenovatel * druhy.jmenovatel);
     }
 
 
@@ -30,21 +30,21 @@ public class Zlomek extends Number {
         if (druhy.citatel == 0) {
             throw new ArithmeticException("Deleni na nulovy citatel!");
         }
-        return new Zlomek(citatel * druhy.jmenovatel, jmenovatel * druhy.citatel).zkratit();
+        return new Zlomek(citatel * druhy.jmenovatel, jmenovatel * druhy.citatel);
     }
 
 
     public Zlomek plus(Zlomek druhy) {
         int novyCitatel = citatel * druhy.jmenovatel + druhy.citatel * jmenovatel;
         int novyJmenovatel = jmenovatel * druhy.jmenovatel;
-        return new Zlomek(novyCitatel, novyJmenovatel).zkratit();
+        return new Zlomek(novyCitatel, novyJmenovatel);
     }
 
 
     public Zlomek minus(Zlomek druhy) {
         int novyCitatel = citatel * druhy.jmenovatel - druhy.citatel * jmenovatel;
         int novyJmenovatel = jmenovatel * druhy.jmenovatel;
-        return new Zlomek(novyCitatel, novyJmenovatel).zkratit();
+        return new Zlomek(novyCitatel, novyJmenovatel);
     }
 
 
