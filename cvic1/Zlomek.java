@@ -1,13 +1,12 @@
 package cvic1;
 
-public class Zlomek {
-
-    private int citatel;
-    private int jmenovatel;
+public class Zlomek extends Number {
+    private final int citatel;
+    private final int jmenovatel;
 
     public Zlomek(int citatel, int jmenovatel) {
         if (jmenovatel == 0) {
-            throw new IllegalArgumentException("Jmenovatel nesmí být nula.");
+            throw new ArithmeticException("Jmenovatel nesmi byt 0!");
         }
         this.citatel = citatel;
         this.jmenovatel = jmenovatel;
@@ -17,52 +16,48 @@ public class Zlomek {
         return citatel;
     }
 
-    public void setCitatel(int citatel) {
-        this.citatel = citatel;
-    }
-
     public int getJmenovatel() {
         return jmenovatel;
     }
 
-    public void setJmenovatel(int jmenovatel) {
-        if (jmenovatel == 0) {
-            throw new IllegalArgumentException("Jmenovatel nesmí být nula.");
-        }
-        this.jmenovatel = jmenovatel;
-    }
 
     public Zlomek krat(Zlomek druhy) {
-        return new Zlomek(citatel * druhy.citatel, jmenovatel * druhy.jmenovatel);
+        return new Zlomek(citatel * druhy.citatel, jmenovatel * druhy.jmenovatel).zkratit();
     }
 
-    public Zlomek del(Zlomek druhy) {
-        return new Zlomek(citatel % druhy.jmenovatel, citatel % druhy.citatel );
+
+    public Zlomek deleno(Zlomek druhy) {
+        if (druhy.citatel == 0) {
+            throw new ArithmeticException("Deleni na nulovy citatel!");
+        }
+        return new Zlomek(citatel * druhy.jmenovatel, jmenovatel * druhy.citatel).zkratit();
     }
 
-    public Zlomek sum(Zlomek druhy) {
-        return new Zlomek(citatel + druhy.citatel, jmenovatel + druhy.jmenovatel);
 
+    public Zlomek plus(Zlomek druhy) {
+        int novyCitatel = citatel * druhy.jmenovatel + druhy.citatel * jmenovatel;
+        int novyJmenovatel = jmenovatel * druhy.jmenovatel;
+        return new Zlomek(novyCitatel, novyJmenovatel).zkratit();
     }
+
 
     public Zlomek minus(Zlomek druhy) {
-        return new Zlomek(citatel - druhy.citatel, citatel - druhy.citatel);
+        int novyCitatel = citatel * druhy.jmenovatel - druhy.citatel * jmenovatel;
+        int novyJmenovatel = jmenovatel * druhy.jmenovatel;
+        return new Zlomek(novyCitatel, novyJmenovatel).zkratit();
     }
+
 
     public Zlomek zkratit() {
         int a = Math.abs(citatel);
         int b = Math.abs(jmenovatel);
-        if (a > b) {
-            int tmp = a;
-            a = b;
-            b = tmp;
+
+        while (b != 0) {
+            int temp = b;
+            b = a % b;
+            a = temp;
         }
-        int zb;
-        do {
-            zb = a % b;
-            a = b;
-            b = zb;
-        } while (zb != 0);
+
         return new Zlomek(citatel / a, jmenovatel / a);
     }
 
@@ -70,5 +65,24 @@ public class Zlomek {
     public String toString() {
         return String.format("%d / %d", citatel, jmenovatel);
     }
-}
 
+    @Override
+    public int intValue() {
+        return citatel / jmenovatel;
+    }
+
+    @Override
+    public long longValue() {
+        return intValue();
+    }
+
+    @Override
+    public float floatValue() {
+        return (float) doubleValue();
+    }
+
+    @Override
+    public double doubleValue() {
+        return ((double) citatel) / jmenovatel;
+    }
+}

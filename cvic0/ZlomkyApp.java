@@ -1,38 +1,61 @@
 package cvic0;
-import cvic1.Zlomek;
 
+import cvic1.Zlomek;
 
 public class ZlomkyApp {
 
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+        System.out.println("Zlomkoaplikace");
 
+        //vytvoreni instance(=objektu) tridy ZLomek
         Zlomek a = new Zlomek(3, 4);
-        int citatel = a.getCitatel();
-        int jmenovatel = a.getJmenovatel();
-        System.out.println(a);
+        System.out.printf("Zlomek a = %s\n", a);
 
         Zlomek b = new Zlomek(2, 5);
 
-
         Zlomek c = a.krat(b);
-        Zlomek d = a.del(b);
-        Zlomek e = a.sum(b);
-        Zlomek f = a.minus(b);
+        System.out.printf("a * b = %s\n", a.krat(b).zkratit());
+        System.out.printf("a / b = %s\n", a.deleno(b).zkratit());
+        System.out.printf("a + b = %s\n", a.plus(b).zkratit());
+        System.out.printf("a - b = %s\n", a.minus(b).zkratit());
 
-        System.out.printf("Zlomek a * b = %s\n", c);
-        System.out.printf("Zlomek a / c = %s\n", d);
-        System.out.printf("Zlomek a + d = %s\n", e);
-        System.out.printf("Zlomek a - b = %s\n", f);
+        Zlomek[] poleZlomku = new Zlomek[4];
+        poleZlomku[0] = a;
+        poleZlomku[1] = b;
+        poleZlomku[2] = c;
+        poleZlomku[3] = new Zlomek(3,0);
 
+        try {
+            Zlomek all = sumaZlomku(poleZlomku);
+            System.out.printf("Soucet je %s\n", all);
+        } catch (ArithmeticException e) {
+            System.out.println("Chyba pri vypoctu sumy zlomku: "+e.getMessage());
+            e.printStackTrace();
+        }
 
-
+        Number[] pole2 = new Number[8];
+        for (int i = 0; i < poleZlomku.length; i++) {
+            pole2[i] = poleZlomku[i];
+        }
+        pole2[4] = 10;
+        pole2[5] = 20;
+        pole2[6] = 30.025;
+        pole2[7] = 40;
+        double suma = 0;
+        for( Number n : pole2 ){
+            System.out.printf("%s\n", n);
+            suma += n.doubleValue();
+        }
+        System.out.printf("Soucet je %s\n", suma);
     }
 
-    @Override
-    public String toString() {
-        return "ZlomkyApp{ " +
-                "Citatel="
-                ;
+    public static Zlomek sumaZlomku(Zlomek[] pole) {
+        Zlomek soucet = new Zlomek(0, 1);
+
+        for (Zlomek z : pole) {
+            soucet = soucet.plus(z);  //soucet += z
+        }
+
+        return soucet.zkratit();
     }
 }
