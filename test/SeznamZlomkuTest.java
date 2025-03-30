@@ -10,8 +10,6 @@ import model.Zlomek;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
-import java.util.Arrays;
-import java.util.function.ToDoubleBiFunction;
 
 class SeznamZlomkuTest {
     SeznamZlomku seznam;
